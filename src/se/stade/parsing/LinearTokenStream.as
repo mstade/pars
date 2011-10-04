@@ -108,7 +108,7 @@ package se.stade.parsing
             if (token)
                 return token;
             else
-                throw ParseError.expected("anything but the following: " + types.join("|")).got(peek); 
+                throw ParseError.expected("anything but: " + types.join("|")).got(peek); 
         }
     }
 }
