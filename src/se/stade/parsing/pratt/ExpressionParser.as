@@ -1,11 +1,11 @@
 package se.stade.parsing.pratt
 {
-	import se.stade.parsing.Expression;
-	import se.stade.parsing.Language;
-	import se.stade.parsing.ParseError;
-	import se.stade.parsing.Token;
-	import se.stade.parsing.TokenStream;
-	import se.stade.parsing.lexer.Lexer;
+    import se.stade.parsing.Expression;
+    import se.stade.parsing.Language;
+    import se.stade.parsing.ParseError;
+    import se.stade.parsing.Token;
+    import se.stade.parsing.TokenStream;
+    import se.stade.parsing.lexer.Lexer;
 
     public class ExpressionParser implements Parser
     {

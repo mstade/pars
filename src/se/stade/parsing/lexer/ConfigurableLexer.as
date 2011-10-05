@@ -1,15 +1,15 @@
 package se.stade.parsing.lexer
 {
-	import flash.utils.Dictionary;
-	
-	import se.stade.babbla.formatting.format;
-	import se.stade.parsing.LinearTokenStream;
-	import se.stade.parsing.SourcePosition;
-	import se.stade.parsing.Token;
-	import se.stade.parsing.TokenStream;
+    import flash.utils.Dictionary;
+    
+    import se.stade.babbla.formatting.format;
+    import se.stade.parsing.LinearTokenStream;
+    import se.stade.parsing.SourcePosition;
+    import se.stade.parsing.Token;
+    import se.stade.parsing.TokenStream;
 
-	public class ConfigurableLexer implements Lexer
-	{
+    public class ConfigurableLexer implements Lexer
+    {
         private var lexemeTable:Dictionary;
         
         public function setLexeme(type:String, lexeme:Lexeme):void
@@ -41,27 +41,27 @@ package se.stade.parsing.lexer
         
         public function scan(source:String, line:uint=1):TokenStream
         {
-			if (!lexemeTable)
-			{
-				return new LinearTokenStream(new <Token>
+            if (!lexemeTable)
+            {
+                return new LinearTokenStream(new <Token>
                 [
                     Token.From(source, SourcePosition.At(0, 0))
                 ]);
-			}
+            }
             
-			var column:int = 0;
-			var tokens:Vector.<Token> = new <Token>[];
+            var column:int = 0;
+            var tokens:Vector.<Token> = new <Token>[];
             
             var text:String = "";
-			
-			while (column < source.length)
-			{
+            
+            while (column < source.length)
+            {
                 var position:SourcePosition = SourcePosition.At(column, line);
                 var nextToken:Token = Token.From(source.charAt(column), position);
                 
-				for each (var lexeme:Lexeme in lexemeTable)
-				{
-					var suggestedToken:Token = lexeme.evaluate(source, position);
+                for each (var lexeme:Lexeme in lexemeTable)
+                {
+                    var suggestedToken:Token = lexeme.evaluate(source, position);
                     
                     if (suggestedToken)
                     {
@@ -70,7 +70,7 @@ package se.stade.parsing.lexer
                         else if (suggestedToken.value.length > nextToken.value.length)
                             nextToken = suggestedToken;
                     }
-				}
+                }
                 
                 if (nextToken.type == Token.Text)
                 {
@@ -86,9 +86,9 @@ package se.stade.parsing.lexer
                 }
                 
                 column += nextToken.value.length;
-			}
-			
-			return new LinearTokenStream(tokens);
-		}
-	}
+            }
+            
+            return new LinearTokenStream(tokens);
+        }
+    }
 }

@@ -1,7 +1,7 @@
 package se.stade.parsing
 {
-	public final class Token
-	{
+    public final class Token
+    {
         public static const Text:String = "text";
         public static const EOF:Token = Token.OfType("eof", SourcePosition.At(0, 0));
         
@@ -15,12 +15,12 @@ package se.stade.parsing
             return new Token(position, type);
         }
         
-		public function Token(position:SourcePosition, type:String, value:String = "")
-		{
-			_value = value || "";
+        public function Token(position:SourcePosition, type:String, value:String = "")
+        {
+            _value = value || "";
             _type = type;
             _position = position;
-		}
+        }
         
         private var _type:String;
         public function get type():String
@@ -33,16 +33,16 @@ package se.stade.parsing
         {
             return _position;
         }
-		
-		protected var _value:String;
-		public function get value():String
-		{
-			return _value;
-		}
         
-		public function toString():String
-		{
-			return type + "[" + value + "]";
-		}
-	}
+        protected var _value:String;
+        public function get value():String
+        {
+            return _value;
+        }
+        
+        public function toString():String
+        {
+            return type + "[" + value + "]";
+        }
+    }
 }
